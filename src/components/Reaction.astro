@@ -1,0 +1,12 @@
+---
+let likes = 0;
+function handleLike() {
+  likes++;
+}
+---
+
+<div class="my-4">
+  <button on:click={handleLike} class="btn btn-primary">
+    👍 Like ({likes})
+  </button>
+</div>

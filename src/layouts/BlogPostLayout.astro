@@ -1,0 +1,71 @@
+---
+title: "Blog Post Layout"
+---
+
+<article class="prose">
+  <header>
+    <h1>{Astro.frontmatter.title}</h1>
+    <p class="text-sm text-gray-500">Published on: {Astro.frontmatter.pubDate}</p>
+  </header>
+  
+  <section>
+    <img src={Astro.frontmatter.heroImage} alt={Astro.frontmatter.title} class="rounded-lg" />
+  </section>
+
+  <section>
+    <p><strong>Tags:</strong> {Astro.frontmatter.tags.join(", ")}</p>
+  </section>
+
+  <div class="content">
+    {Astro.children}
+  </div>
+
+  <section class="comments-section mt-8">
+    <h2 class="text-2xl font-semibold">Comments</h2>
+    <div id="giscus"></div>
+    <script src="https://giscus.app/client.js"
+        data-repo="Bl0ss0mX5/Bl0ss0mX5"
+        data-repo-id="R_kgDOOMDPMg"
+        data-category="General"
+        data-category-id="DIC_kwDOOMDPMs4Cpx4w"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="1"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="en"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+  </section>
+
+  <!-- Reactions Section -->
+  <section class="reactions-section mt-8">
+    <h2 class="text-xl font-semibold">Reactions</h2>
+    <button class="react-btn thumbs-up" onClick="incrementLike()">👍 Like</button>
+    <p id="like-count">Likes: 0</p>
+  </section>
+
+  <script>
+    let likeCount = 0;
+    function incrementLike() {
+      likeCount++;
+      document.getElementById('like-count').textContent = `Likes: ${likeCount}`;
+    }
+  </script>
+
+   <!-- Share Options -->
+   <section class="share-options mt-8">
+    <h2 class="text-xl font-semibold">Share this post:</h2>
+    <div class="addthis_toolbox addthis_default_style">
+      <a class="addthis_button_facebook"></a>
+      <a class="addthis_button_twitter"></a>
+      <a class="addthis_button_linkedin"></a>
+      <a class="addthis_button_email"></a>
+    </div>
+    <script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=YOUR_ADDTHIS_PROFILE_ID"></script>
+  </section>
+
+</article>

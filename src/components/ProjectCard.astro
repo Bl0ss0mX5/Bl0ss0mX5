@@ -1,0 +1,21 @@
+---
+// src/components/ProjectCard.astro
+import HorizontalCard from "./HorizontalCard.astro";
+
+const { title, img, desc, url, badge, date } = Astro.props;
+const formattedDate = date instanceof Date ? date.toLocaleString() : "No Date Provided";
+---
+
+<div class="mb-6">
+  <HorizontalCard 
+    title={title}
+    img={img}
+    desc={desc}
+    url={url}
+    badge={badge}
+  />
+  <div class="text-sm text-gray-500 mt-1 ml-1">
+    {formattedDate}
+  </div>
+  <div class="divider my-3"></div>
+</div>

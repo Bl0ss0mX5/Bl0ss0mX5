@@ -1,0 +1,26 @@
+---
+let comment = '';
+let comments = [];
+
+function submitComment() {
+  if (comment.trim()) {
+    comments.push({ text: comment, date: new Date().toLocaleString() });
+    comment = '';
+  }
+}
+---
+
+<div class="mt-6">
+  <h3 class="text-xl font-bold">Comments</h3>
+  <textarea bind:value={comment} class="textarea textarea-bordered w-full my-2" placeholder="Add a comment..."></textarea>
+  <button on:click={submitComment} class="btn btn-outline">Submit</button>
+
+  <ul class="mt-4 space-y-2">
+    {comments.map(c => (
+      <li class="bg-gray-100 p-2 rounded-md">
+        <div class="text-sm text-gray-700">{c.text}</div>
+        <div class="text-xs text-gray-400">{c.date}</div>
+      </li>
+    ))}
+  </ul>
+</div>

@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Optional custom styles (you can keep this too): */
+.time-line-container > div:last-child .education__time > .education__line {
+    display: none;
+}
+

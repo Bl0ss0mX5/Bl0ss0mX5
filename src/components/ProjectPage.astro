@@ -1,0 +1,24 @@
+---
+import Reaction from "../components/Reaction.astro";
+import Comment from "../components/Comment.astro";
+const { title, img, desc, pubDate } = Astro.props;
+---
+
+<article class="prose">
+  <h1>{title}</h1>
+  <img src={img} alt={title} class="rounded-xl" />
+  <p class="text-gray-600 text-sm">Published on {pubDate.toLocaleString()}</p>
+  <slot /> <!-- Project content -->
+  <Reaction />
+  <Comment />
+</article>
+
+<div class="my-4">
+  <button
+    on:click={() => navigator.clipboard.writeText(window.location.href)}
+    class="btn btn-outline"
+  >
+    🔗 Copy Project Link
+  </button>
+</div>
+

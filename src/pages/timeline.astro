@@ -1,0 +1,26 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import TimeLineElement from "../components/about/TimeLine.astro";
+---
+
+<BaseLayout title="Bl0ss0mX5 | About" sideBarActiveItemID="cv">
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">Timeline of Events</div>
+  </div>
+
+
+  <div class="time-line-container grid gap-4 mb-10">
+    <TimeLineElement
+      title="Website Redesigned"
+      subtitle="May 4, 2025"
+    >
+    Redesigned my website for simpler navigation
+    </TimeLineElement>
+    <TimeLineElement
+      title="Website Launched"
+      subtitle="March 21, 2025"
+    >
+    Designed and launched my personal cybersecurity blog to document my journey.
+    </TimeLineElement>
+  </div>
+

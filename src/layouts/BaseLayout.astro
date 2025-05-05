@@ -1,0 +1,113 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import SideBar from "../components/SideBar.astro";
+import { ViewTransitions } from "astro:transitions";
+
+import { SITE_TITLE, SITE_DESCRIPTION, TRANSITION_API } from "../config";
+
+const {
+  image,
+  title = SITE_TITLE,
+  description = SITE_DESCRIPTION,
+  includeSidebar = true,
+  sideBarActiveItemID,
+  ogType,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Font Awesome for icons -->
+    <link 
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" 
+      rel="stylesheet"
+    />
+
+    <BaseHead title={title} description={description} image={image} ogType={ogType} />
+    
+    {TRANSITION_API && <ViewTransitions />}
+    
+    <!-- Theme setup before render -->
+    <script>
+      try {
+        const theme = localStorage.getItem("theme");
+        if (theme) {
+          document.documentElement.setAttribute("data-theme", theme);
+        }
+      } catch (e) {
+        document.documentElement.setAttribute("data-theme", "night");
+      }
+    </script>
+  </head>
+
+  <body>
+    <div class="bg-base-100 drawer lg:drawer-open">
+      <input id="my-drawer" type="checkbox" class="drawer-toggle" />
+
+      <div class="drawer-content bg-base-100">
+        <!-- Header -->
+        <Header title={SITE_TITLE} />
+
+        <!-- 🌗 Theme Selector Dropdown -->
+        <div class="dropdown dropdown-end z-50">
+          <label tabindex="0" class="btn btn-outline btn-sm m-2">Theme</label>
+          <ul 
+            tabindex="0" 
+            class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 max-h-[60vh] overflow-y-auto"
+          >
+            {[
+              'light', 'dark', 'cupcake', 'bumblebee', 'emerald', 'corporate', 
+              'synthwave', 'retro', 'cyberpunk', 'valentine', 'halloween', 'garden', 
+              'forest', 'aqua', 'lofi', 'pastel', 'fantasy', 'wireframe', 'black', 
+              'luxury', 'dracula', 'cmyk', 'autumn', 'business', 'acid', 'lemonade', 
+              'night', 'coffee', 'winter', 'dim', 'nord', 'sunset'
+            ].map(theme => (
+              <li><button onclick={`setTheme('${theme}')`}>{theme.charAt(0).toUpperCase() + theme.slice(1)}</button></li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Page Content -->
+        <main class="p-6 pt-10 lg:max-w-[900px] max-w-full">
+          <slot />
+        </main>
+
+        <!-- Footer -->
+        <Footer />
+      </div>
+
+      <!-- Sidebar -->
+      {includeSidebar && <SideBar sideBarActiveItemID={sideBarActiveItemID} />}
+    </div>
+
+    <!-- Theme Persistence Script -->
+    <script>
+      function applySavedTheme() {
+        const savedTheme = localStorage.getItem("theme");
+        if (savedTheme) {
+          document.documentElement.setAttribute("data-theme", savedTheme);
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        applySavedTheme();
+
+        window.setTheme = function (theme) {
+          document.documentElement.setAttribute("data-theme", theme);
+          localStorage.setItem("theme", theme);
+        };
+      });
+
+      // Astro View Transitions hook
+      document.addEventListener("astro:after-swap", () => {
+        applySavedTheme();
+      });
+    </script>
+  </body>
+</html>

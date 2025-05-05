@@ -1,0 +1,37 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getCollection } from 'astro:content';
+import ProjectCard from "../components/ProjectCard.astro";
+
+const projects = await getCollection("projects");
+
+// Sort latest first
+const sortedProjects = projects.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+---
+
+<BaseLayout title="Projects" sideBarActiveItemID="projects">
+  <div class="text-3xl font-bold mb-5">Latest Projects</div>
+  {sortedProjects.map(project => (
+    <ProjectCard {...project.data} />
+  ))}
+</BaseLayout>
+
+
+<!-- 
+
+demo project
+
+---
+title: "Military Vehicle Detection"
+img: "/post_img.webp"
+desc: "YOLOv12 + SAM2 based detection and segmentation of army vehicles."
+url: "https://your-site.com/projects/demo-project-1"
+badge: "FOSS"
+pubDate: 2025-05-03
+layout: "../../layouts/ProjectPage.astro"
+---
+
+## About this project
+
+YOLOv12 identifies military vehicles. SAM2 performs segmentation. Designed for hackathon 2025.
+-->
