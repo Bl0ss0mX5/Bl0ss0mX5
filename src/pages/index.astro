@@ -13,18 +13,25 @@ const last_blog_posts = blogPosts.slice(0, 3);
 
 const ctfData = [
   {
+    title: "TsukuCTF",
+    organizer: "TsukuCTF",
+    date: "May 03 - May 04, 2025",
+    category: "Medium",
+    link: "https://tsukuctf.org/",
+  },
+  {
+    title: "SummitCTF 2025",
+    organizer: "SummitCTF",
+    date: "April 12 - April 13, 2025",
+    category: "Beginner",
+    link: "https://picoctf.org",
+  },
+  {
     title: "Hackfinity Battle",
     organizer: "TryHackMe",
     date: "March 17 - March 20, 2025",
     category: "Medium",
     link: "https://tryhackme.com/room/HackfinityBattle",
-  },
-  {
-    title: "Cyber Clash",
-    organizer: "picoCTF",
-    date: "April 2 - April 5, 2025",
-    category: "Beginner",
-    link: "https://picoctf.org",
   },
 ];
 ---
@@ -75,29 +82,31 @@ const ctfData = [
     </a>
   </div><br><br><br>
 
-  <div>
-    <div class="text-3xl w-full font-bold mb-2">My latest participated CTFs {"</>"}</div>
-  </div>
+ <div>
+  <div class="text-3xl w-full font-bold mb-2">My latest participated CTFs {"</>"}</div>
+</div>
 
- <div class="grid md:grid-cols-2 gap-6">
-    {ctfData.map((ctf) => (
-      <div class="bg-[#2e2e3a] rounded-2xl p-6 shadow-lg hover:scale-[1.02] transition-transform duration-300 border border-gray-700">
-        <h2 class="text-2xl font-bold text-green-300 mb-2">{ctf.title}</h2>
-        <p><span class="font-semibold text-gray-300">Organizer:</span> {ctf.organizer}</p>
-        <p><span class="font-semibold text-gray-300">Date:</span> {ctf.date}</p>
-        <p><span class="font-semibold text-gray-300">Category:</span> {ctf.category}</p>
-        <p class="mt-2">
-          <a href={ctf.link} target="_blank" class="text-blue-400 hover:text-blue-300 underline">
-            Visit {ctf.title} ↗
-          </a>
-        </p>
-      </div>
-    ))}
-  </div>
-  
-  <div class="mt-4">
-    <a href="/ctfs" class="btn btn-outline">
-      More CTFs →
-    </a>
-  </div>
+<div class="grid md:grid-cols-2 gap-6 mt-8">
+  {ctfData.map((ctf) => (
+    <div class="bg-base-200 text-base-content rounded-2xl p-6 shadow hover:scale-[1.02] transition-transform duration-300 border border-base-300">
+      <h2 class="text-2xl font-bold mb-2">{ctf.title}</h2>
+      <p><span class="font-semibold">Organizer:</span> {ctf.organizer}</p>
+      <p><span class="font-semibold">Date:</span> {ctf.date}</p>
+      <p><span class="font-semibold">Category:</span> {ctf.category}</p>
+      <p class="mt-2">
+        <a href={ctf.link} target="_blank" class="underline hover:opacity-80">
+          Visit {ctf.title} ↗
+        </a>
+      </p>
+    </div>
+  ))}
+</div>
+
+
+<div class="mt-4">
+  <a href="/ctfs" class="btn btn-outline">
+    More CTFs →
+  </a>
+</div>
+
 </BaseLayout>

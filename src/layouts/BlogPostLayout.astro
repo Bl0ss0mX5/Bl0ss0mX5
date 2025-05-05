@@ -1,5 +1,6 @@
 ---
-title: "Blog Post Layout"
+title: "Writeups"
+import { ClientOnly } from "astro/client";
 ---
 
 <article class="prose">
@@ -16,8 +17,9 @@ title: "Blog Post Layout"
     <p><strong>Tags:</strong> {Astro.frontmatter.tags.join(", ")}</p>
   </section>
 
+  <!-- Render Markdown content -->
   <div class="content">
-    {Astro.children}
+    <div innerHTML={Astro.children} />
   </div>
 
   <section class="comments-section mt-8">

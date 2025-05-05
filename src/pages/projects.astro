@@ -9,17 +9,14 @@ const projects = await getCollection("projects");
 const sortedProjects = projects.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
 ---
 
-<BaseLayout title="Projects" sideBarActiveItemID="projects">
-  <div class="text-3xl font-bold mb-5">Latest Projects</div>
+<BaseLayout title="Bl0ss0mX5 | Projects" sideBarActiveItemID="projects">
+  <div class="text-3xl font-bold mb-5">Projects</div>
   {sortedProjects.map(project => (
     <ProjectCard {...project.data} />
   ))}
 </BaseLayout>
 
-
-<!-- 
-
-demo project
+<!--
 
 ---
 title: "Military Vehicle Detection"
