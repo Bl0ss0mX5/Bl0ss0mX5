@@ -4,6 +4,7 @@ description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ei
 pubDate: "Sep 10 2025"
 heroImage: "/post_img.webp"
 tags: ["tokio"]
+layout: "../../layouts/BlogPostLayout.astro"
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
