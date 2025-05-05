@@ -54,25 +54,6 @@ const {
         <!-- Header -->
         <Header title={SITE_TITLE} />
 
-        <!-- 🌗 Theme Selector Dropdown -->
-        <div class="dropdown dropdown-end z-50">
-          <label tabindex="0" class="btn btn-outline btn-sm m-2">Theme</label>
-          <ul 
-            tabindex="0" 
-            class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 max-h-[60vh] overflow-y-auto"
-          >
-            {[
-              'light', 'dark', 'cupcake', 'bumblebee', 'emerald', 'corporate', 
-              'synthwave', 'retro', 'cyberpunk', 'valentine', 'halloween', 'garden', 
-              'forest', 'aqua', 'lofi', 'pastel', 'fantasy', 'wireframe', 'black', 
-              'luxury', 'dracula', 'cmyk', 'autumn', 'business', 'acid', 'lemonade', 
-              'night', 'coffee', 'winter', 'dim', 'nord', 'sunset'
-            ].map(theme => (
-              <li><button onclick={`setTheme('${theme}')`}>{theme.charAt(0).toUpperCase() + theme.slice(1)}</button></li>
-            ))}
-          </ul>
-        </div>
-
         <!-- Page Content -->
         <main class="p-6 pt-10 lg:max-w-[900px] max-w-full">
           <slot />
@@ -85,6 +66,36 @@ const {
       <!-- Sidebar -->
       {includeSidebar && <SideBar sideBarActiveItemID={sideBarActiveItemID} />}
     </div>
+
+    <!-- Theme Selector Button: outside the sidebar for mobile -->
+    <div class="theme-selector-btn">
+      <div class="dropdown dropdown-end z-50">
+        <label tabindex="0" class="btn btn-outline btn-sm m-2">Theme</label>
+        <ul 
+          tabindex="0" 
+          class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 max-h-[60vh] overflow-y-auto"
+        >
+          {[
+            'light', 'dark', 'cupcake', 'bumblebee', 'emerald', 'corporate', 
+            'synthwave', 'retro', 'cyberpunk', 'valentine', 'halloween', 'garden', 
+            'forest', 'aqua', 'lofi', 'pastel', 'fantasy', 'wireframe', 'black', 
+            'luxury', 'dracula', 'cmyk', 'autumn', 'business', 'acid', 'lemonade', 
+            'night', 'coffee', 'winter', 'dim', 'nord', 'sunset'
+          ].map(theme => (
+            <li><button onclick={`setTheme('${theme}')`}>{theme.charAt(0).toUpperCase() + theme.slice(1)}</button></li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <!-- Close button for the sidebar (on mobile) -->
+    <label 
+      tabindex="0" 
+      class="btn btn-sm btn-circle absolute top-2 right-2 lg:hidden" 
+      for="my-drawer"
+    >
+      <i class="fas fa-times"></i>
+    </label>
 
     <!-- Theme Persistence Script -->
     <script>
@@ -109,5 +120,23 @@ const {
         applySavedTheme();
       });
     </script>
+
+    <!-- Style for mobile theme button positioning -->
+    <style>
+      .theme-selector-btn {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        z-index: 1000;
+      }
+
+      /* On mobile devices, ensure the button doesn't overlap the sidebar */
+      @media (max-width: 1024px) {
+        .theme-selector-btn {
+          top: 20px; /* Adjust the top position */
+          right: 10px;
+        }
+      }
+    </style>
   </body>
 </html>
