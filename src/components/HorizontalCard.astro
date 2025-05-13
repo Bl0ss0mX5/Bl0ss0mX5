@@ -2,9 +2,11 @@
 const { title, img, desc, url, badge, tags, target = "_self", width = "750", height = "422", pubDate } = Astro.props;
 const tag_url = url.split("/").slice(0, -1).join("/") + "/tag";
 
-
 // Format pubDate to dd-mm-yyyy using toLocaleDateString
 const formattedDate = pubDate ? new Date(pubDate).toLocaleDateString('en-GB') : null;
+
+// Filter tags to exclude any tag containing a hyphen ('-')
+const filteredTags = tags?.filter(tag => !tag.includes('-')) ?? [];
 ---
 
 <div class="rounded-lg bg-base-100 hover:shadow-xl transition ease-in-out hover:scale-[102%]">
@@ -23,12 +25,15 @@ const formattedDate = pubDate ? new Date(pubDate).toLocaleDateString('en-GB') : 
         )}
 
         <div class="card-actions justify-end">
-          {tags &&
-            tags.map((tag) => (
+          {filteredTags.length > 0 ? (
+            filteredTags.map((tag) => (
               <a href={`${tag_url}/${tag}`} class="badge badge-outline">
                 {tag}
               </a>
-            ))}
+            ))
+          ) : (
+            <span class="text-gray-500">No tags</span>
+          )}
         </div>
       </div>
     </div>

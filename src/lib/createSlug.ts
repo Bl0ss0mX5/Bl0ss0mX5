@@ -1,19 +1,19 @@
-// Adapted from https://equk.co.uk/2023/02/02/generating-slug-from-title-in-astro/
+// lib/createSlug.ts
 
 import { GENERATE_SLUG_FROM_TITLE } from '../config'
 
 export default function (title: string, staticSlug: string) {
   return (
     !GENERATE_SLUG_FROM_TITLE ? staticSlug : title
-      // remove leading & trailing whitespace
+      // Remove leading & trailing whitespace
       .trim()
-      // output lowercase
+      // Convert to lowercase
       .toLowerCase()
-      // replace spaces
+      // Replace spaces with hyphens
       .replace(/\s+/g, '-')
-      // remove special characters
+      // Remove special characters
       .replace(/[^\w-]/g, '')
-      // remove leading & trailing separtors
+      // Remove leading & trailing separators
       .replace(/^-+|-+$/g, '')
   )
 }
