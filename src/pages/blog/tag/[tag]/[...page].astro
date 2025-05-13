@@ -33,7 +33,7 @@ export async function getStaticPaths({ paginate }) {
 }
 
 // ✅ Props and tag parsing
-const { page } = Astro.props;
+const { page = { data: [], url: {} } } = Astro.props ?? {};
 const params = Astro.params;
 
 const all_posts = await getCollection("blog");
