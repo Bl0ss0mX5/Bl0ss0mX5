@@ -1,0 +1,31 @@
+---
+import { getEntryBySlug, getCollection } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+const { slug } = Astro.params;
+
+const post = await getEntryBySlug('research', `sqli/${slug}`);
+
+if (!post) {
+  throw new Error(`Post not found: ${slug}`);
+}
+
+const { Content } = await post.render();
+
+export async function getStaticPaths() {
+  const posts = await getCollection('research');
+  return posts
+    .filter(p => p.slug.startsWith('sqli/'))
+    .map(p => ({
+      params: { slug: p.slug.replace('sqli/', '') }
+    }));
+}
+---
+
+<BaseLayout title={post.data.title}>
+  <article class="prose max-w-none">
+    <h1>{post.data.title}</h1>
+    <p class="text-sm text-gray-500">{post.data.pubDate.toDateString()}</p>
+    <Content />
+  </article>
+</BaseLayout>

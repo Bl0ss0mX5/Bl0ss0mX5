@@ -1,6 +1,5 @@
 import { z, defineCollection } from "astro:content";
 
-
 // Blog schema (existing)
 const blogSchema = z.object({
   title: z.string(),
@@ -25,17 +24,27 @@ const projectSchema = z.object({
   url: z.string(),
   badge: z.string().optional(),
   pubDate: z.coerce.date(),
-  tags: z.array(z.string()).optional()
+  tags: z.array(z.string()).optional(),
 });
 
+// 🔥 Research schema (new)
+const researchSchema = z.object({
+  title: z.string(),
+  pubDate: z.coerce.date(),
+  description: z.string().optional(),
+  tags: z.array(z.string()).optional(),
+});
 
 export type BlogSchema = z.infer<typeof blogSchema>;
 export type ProjectSchema = z.infer<typeof projectSchema>;
+export type ResearchSchema = z.infer<typeof researchSchema>;
 
 const blogCollection = defineCollection({ schema: blogSchema });
 const projectCollection = defineCollection({ schema: projectSchema });
+const researchCollection = defineCollection({ schema: researchSchema });
 
 export const collections = {
   blog: blogCollection,
   projects: projectCollection,
+  research: researchCollection, 
 };
