@@ -8,9 +8,9 @@ Welcome to my digital garden — a space where I document my journey through **C
 
 ## ✨ Highlights
 
-- 🔐 CTF writeups from competitions like PicoCTF, DownUnderCTF, and more.
+- 🔐 CTF writeups from competitions.
 - 🛠️ Cybersecurity research and bug bounty explorations.
-- 🌱 Personal notes, timelines, and reflections.
+- 🌱 Personal notes, timelines and reflections.
 - 💻 Cool side projects and web experiments.
 - 📚 Beginner-friendly content to help others get started.
 
