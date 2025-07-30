@@ -1,6 +1,6 @@
 ---
 title: "WWCTF 2025 — The Needle"
-description: ""
+description: "A blind SQL injection challenge where Burp Suite becomes your eyes."
 pubDate: "2025-07-29"
 tags: ["wwctf", "writeup", "web", "ctf", "the-needle"]
 ---
