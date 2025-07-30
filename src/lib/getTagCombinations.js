@@ -12,4 +12,3 @@ export default function getTagCombinations(tags) {
     generate([], tags);
     return combinations;
   }
-  

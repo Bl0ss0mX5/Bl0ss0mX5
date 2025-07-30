@@ -2,7 +2,6 @@
 title: "UIUCTF 2025 | OSINT | Writeups"
 description: "UIUCTF is an annual capture-the-flag competition hosted by SIGPwny."
 pubDate: "2025-07-29"
-tags: ["2025", "writeup", "uiuctf", "osint"]
 ---
 
 **Mr. Blue Sky — OSINT**

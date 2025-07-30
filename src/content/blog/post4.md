@@ -2,7 +2,6 @@
 title: "ShaktiCTF | 2025 | Writeups"
 description: "A Jeopardy style online Capture The Flag competition to upbring and promote women in the industry."
 pubDate: "2025-07-30"
-tags: ["pwn", "web", "shaktictf"]
 ---
 
 **Templateception — Web**
